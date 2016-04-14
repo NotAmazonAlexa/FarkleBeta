@@ -89,8 +89,31 @@ public class FarkleMainActivity extends GameMainActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         
+        if (id == R.id.score_guide) {
+            Toast score_guide = Toast.makeText(getApplicationContext(), "5’s = 50 points\n" +
+                                               "1’s = 100 points\n" +
+                                               "1,1,1 = 300 points\n" +
+                                               "2,2,2 = 200 points\n" +
+                                               "3,3,3 = 300 points\n" +
+                                               "4,4,4 = 400 points\n" +
+                                               "5,5,5 = 500 points\n" +
+                                               "6,6,6 = 600 points\n" +
+                                               "Four of a Kind = 1,000 points\n" +
+                                               "Five of a Kind = 2,000 points\n" +
+                                               "Six of a Kind = 3,000 points\n" +
+                                               "A Straight of 1-6 = 1,500 points\n" +
+                                               "Three Pairs = 1,500 points\n" +
+                                               "Four of a Kind + a Pair = 1,500\n" +
+                                               "Two sets of Three of a Kind = 2,500", Toast.LENGTH_LONG);
+            score_guide.setGravity(Gravity.TOP|Gravity.LEFT, 800, 400);
+            
+            score_guide.show();
+            
+            return true;
+        }
+        
         //noinspection SimplifiableIfStatement
-        if (id == R.id.girl) {
+        else if (id == R.id.girl) {
             playerOneImage.setImageResource(R.drawable.avatar_girl);
             return true;
         }
