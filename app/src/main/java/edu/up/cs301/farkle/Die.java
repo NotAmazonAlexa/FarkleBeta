@@ -1,5 +1,7 @@
 package edu.up.cs301.farkle;
 
+import java.io.Serializable;
+
 /**
  * represents a single die object in the farkle game
  *
@@ -9,7 +11,9 @@ package edu.up.cs301.farkle;
  * @author Briahna Santillana
  * @version 15 March 2016
  */
-public class Die {
+public class Die implements Serializable {
+
+    private static final long SerialVersionUID = 7835399752863891224L;
     private boolean isInPlay, isSelected;
     private int value;
 

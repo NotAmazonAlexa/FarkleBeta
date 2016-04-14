@@ -51,9 +51,32 @@
     android:title="Dog" />
             </menu>
         </item>
-        <item
+    <item
     android:id="@+id/menu_settings"
     android:title="Dice Style"
-    android:orderInCategory="400" />
+    android:orderInCategory="400">
+<menu>
+                    <item
+        android:id="@+id/pinkDie"
+        android:orderInCategory="410"
+        android:title="Pink Dice" />
+                    <item
+        android:id="@+id/sunsetDie"
+        android:orderInCategory="420"
+        android:title="Sunset Dice" />
+                    <item
+    android:id="@+id/purpleDie"
+    android:orderInCategory="430"
+    android:title="Purple Dice" />
+    <item
+        android:id="@+id/redDie"
+        android:orderInCategory="430"
+        android:title="Red Dice" />
+            <item
+    android:id="@+id/nuxDie"
+    android:orderInCategory="440"
+    android:title="Secret Dice" />       
+    </menu>
+    </item>
 </menu>
 

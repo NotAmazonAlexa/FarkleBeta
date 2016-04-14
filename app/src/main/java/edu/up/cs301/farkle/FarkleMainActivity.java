@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.media.Image;
 import android.view.Gravity;
 import android.view.MenuItem;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -29,6 +30,12 @@ public class FarkleMainActivity extends GameMainActivity {
     // for networked play
     private static final int PORT_NUMBER = 2234;
     protected static ImageView playerOneImage, playerTwoImage;
+    private FarkleHumanPlayer guiPlayer;
+
+    public void setGuiPlayer(FarkleHumanPlayer p) {
+        guiPlayer = p;
+    }
+
     //or I can do references of some kind in GameState
     
     /**
@@ -61,7 +68,7 @@ public class FarkleMainActivity extends GameMainActivity {
         
         
         // Create a game configuration class for Farkle:
-        GameConfig defaultConfig = new GameConfig(playerTypes, 1, 2, "Farkle", PORT_NUMBER);
+        GameConfig defaultConfig = new GameConfig(playerTypes, 2, 2, "Farkle", PORT_NUMBER);
         defaultConfig.addPlayer("Human", 0); // player 1: a human player
         defaultConfig.addPlayer("Computer Smart", 2); // player 2: a computer player
         defaultConfig.setRemoteData("Remote Human Player", "", 0);
@@ -110,49 +117,71 @@ public class FarkleMainActivity extends GameMainActivity {
             score_guide.setGravity(Gravity.TOP|Gravity.LEFT, 800, 400);
             
             score_guide.show();
-            
-            return true;
         }
         
         //noinspection SimplifiableIfStatement
         else if (id == R.id.girl) {
             playerOneImage.setImageResource(R.drawable.avatar_girl);
-            return true;
         }
         else if (id == R.id.boyBlackHair)
         {
             playerOneImage.setImageResource(R.drawable.avatar_boy1);
-            return true;
         }
         else if (id == R.id.boyRedHair)
         {
             playerOneImage.setImageResource(R.drawable.avatar_boy2);
-            return true;
         }
         else if (id == R.id.dog)
         {
             playerOneImage.setImageResource(R.drawable.avatar_puppy);
-            return true;
         }
         else if (id == R.id.girl1) {
             playerTwoImage.setImageResource(R.drawable.avatar_girl);
-            return true;
         }
         else if (id == R.id.boyBlackHair1)
         {
             playerTwoImage.setImageResource(R.drawable.avatar_boy1);
-            return true;
         }
         else if (id == R.id.boyRedHair1)
         {
             playerTwoImage.setImageResource(R.drawable.avatar_boy2);
-            return true;
         }
         else if (id == R.id.dog1)
         {
             playerTwoImage.setImageResource(R.drawable.avatar_puppy);
-            return true;
         }
-        return super.onOptionsItemSelected(item);
+        else if (id == R.id.pinkDie)
+        {
+            if(guiPlayer!=null) {
+                guiPlayer.setDiceStyle(1);
+            }
+        }
+        else if (id == R.id.sunsetDie)
+        {
+            if(guiPlayer!=null) {
+                guiPlayer.setDiceStyle(2);
+            }
+        }
+        else if (id == R.id.purpleDie)
+        {
+            if(guiPlayer!=null) {
+                guiPlayer.setDiceStyle(3);
+            }
+        }
+        else if (id == R.id.redDie)
+        {
+            if(guiPlayer!=null) {
+                guiPlayer.setDiceStyle(0);
+            }
+        }
+        else if (id == R.id.nuxDie) {
+            if(guiPlayer != null) {
+                guiPlayer.setDiceStyle(4);
+            }
+        }
+        else {
+            return super.onOptionsItemSelected(item);
+        }
+        return true;
     }
 }

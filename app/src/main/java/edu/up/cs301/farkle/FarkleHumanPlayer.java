@@ -17,6 +17,8 @@ import edu.up.cs301.game.GameMainActivity;
 import edu.up.cs301.game.actionMsg.GameAction;
 import edu.up.cs301.game.infoMsg.GameInfo;
 import edu.up.cs301.game.R;
+import edu.up.cs301.game.infoMsg.IllegalMoveInfo;
+import edu.up.cs301.game.infoMsg.NotYourTurnInfo;
 
 /**
  * represents a human player in the game, allowing the person to interact with the
@@ -42,17 +44,29 @@ public class FarkleHumanPlayer extends GameHumanPlayer implements View.OnClickLi
     //images
     //    protected int[] picId = {R.drawable.avatar_girl, R.drawable.avatar_boy1,R.drawable.avatar_boy2,
     //                             R.drawable.avatar_puppy};
-    
+
+    private int diceStyle = 0;
+    // 0 = red; 1 = pink; 2 = sunset; 3 = purple; 4 = nux
+
     // image res id's
     protected int[] diceWhiteResID = {R.drawable.white_one_die,R.drawable.white_two_die,
     R.drawable.white_three_die, R.drawable.white_four_die,
     R.drawable.white_five_die,R.drawable.white_six_die};
-    protected int[] diceRedResID = {R.drawable.red_one_die,R.drawable.red_two_die,
-    R.drawable.red_three_die, R.drawable.red_four_die,
-    R.drawable.red_five_die,R.drawable.red_six_die};
     protected int[] imageButtonId = {R.id.dieOne, R.id.dieTwo, R.id.dieThree, R.id.dieFour,
     R.id.dieFive, R.id.dieSix};
-    
+
+    protected int[][] diceResID = {{R.drawable.red_one_die,R.drawable.red_two_die,
+            R.drawable.red_three_die, R.drawable.red_four_die,
+            R.drawable.red_five_die,R.drawable.red_six_die},{ R.drawable.pink_one_die,R.drawable.pink_two_die,
+            R.drawable.pink_three_die, R.drawable.pink_four_die,
+            R.drawable.pink_five_die,R.drawable.pink_six_die},{ R.drawable.sunset_one_die,R.drawable.sunset_two_die,
+            R.drawable.sunset_three_die, R.drawable.sunset_four_die,
+            R.drawable.sunset_five_die,R.drawable.sunset_six_die},{R.drawable.purple_one_die,R.drawable.purple_two_die,
+            R.drawable.purple_three_die, R.drawable.purple_four_die,
+            R.drawable.purple_five_die,R.drawable.purple_six_die},{R.drawable.nux_one_die,R.drawable.nux_two_die,
+            R.drawable.nux_three_die, R.drawable.nux_four_die,
+            R.drawable.nux_five_die,R.drawable.nux_six_die}};
+
     // game play variables
     private GameMainActivity myActivity;
     private FarkleState myState;
@@ -89,7 +103,12 @@ public class FarkleHumanPlayer extends GameHumanPlayer implements View.OnClickLi
     public void receiveInfo(GameInfo info) {
 
         // ignore the message if it's not a FarkleState message
-        if (!(info instanceof FarkleState)) return;
+        if (!(info instanceof FarkleState)) {
+            if (info instanceof IllegalMoveInfo || info instanceof NotYourTurnInfo) {
+                this.flash(0xff49a17f, 100);
+            }
+            return;
+        }
         
         // update our state
         this.myState = (FarkleState)info;
@@ -127,6 +146,10 @@ public class FarkleHumanPlayer extends GameHumanPlayer implements View.OnClickLi
         
         myActivity = activity;
         activity.setContentView(R.layout.farkle_human_player);
+
+        if ( activity instanceof FarkleMainActivity) {
+            ((FarkleMainActivity)activity).setGuiPlayer(this);
+        }
         
         // text views
         p0scoreText = (TextView)activity.findViewById(R.id.p0CurrentScore);
@@ -214,7 +237,7 @@ public class FarkleHumanPlayer extends GameHumanPlayer implements View.OnClickLi
                     diceButtons[i].setImageResource(diceWhiteResID[curDie.getValue()-1]);
                 }
                 else {
-                    diceButtons[i].setImageResource(diceRedResID[curDie.getValue()-1]);
+                    diceButtons[i].setImageResource(diceResID[diceStyle][curDie.getValue()-1]);
                 }
             }
         }
@@ -231,17 +254,17 @@ public class FarkleHumanPlayer extends GameHumanPlayer implements View.OnClickLi
         displayDie();
         
         //indicate whose turn it is by highlighting their name
-        if (myState.getCurrentPlayer() == this.playerNum) {//player 1's turn
+        if (myState.getCurrentPlayer() == 0) {//player 1's turn
             playerOneText.setTextColor(Color.BLACK);
             playerOneText.setBackgroundColor(Color.WHITE);
             playerTwoText.setTextColor(Color.WHITE);
-            playerTwoText.setBackgroundColor(Color.BLACK);
+            playerTwoText.setBackgroundColor(0x00000000);
         }
         else{ //player 2's turn
             playerTwoText.setTextColor(Color.BLACK);
             playerTwoText.setBackgroundColor(Color.WHITE);
             playerOneText.setTextColor(Color.WHITE);
-            playerOneText.setBackgroundColor(Color.BLACK);
+            playerOneText.setBackgroundColor(0x00000000);
         }
 
         
@@ -271,6 +294,12 @@ public class FarkleHumanPlayer extends GameHumanPlayer implements View.OnClickLi
         farkleImage2.invalidate();
         getTimer().stop();
     }
-    
+
+    public void setDiceStyle(int diceStyle) {
+        if(diceStyle >=0 && diceStyle <5) {
+            this.diceStyle = diceStyle;
+            displayDie();
+        }
+    }
     
 }
