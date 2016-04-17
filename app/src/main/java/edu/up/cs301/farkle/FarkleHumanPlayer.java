@@ -101,11 +101,17 @@ public class FarkleHumanPlayer extends GameHumanPlayer implements View.OnClickLi
      */
     @Override
     public void receiveInfo(GameInfo info) {
+        // make sure the background is currently black -- not stuck on a flash
+        View top = this.getTopView();
+        if (top == null) return;
+        top.setBackgroundColor(0xFF000000);
 
         // ignore the message if it's not a FarkleState message
         if (!(info instanceof FarkleState)) {
-            if (info instanceof IllegalMoveInfo || info instanceof NotYourTurnInfo) {
+            //if (info instanceof IllegalMoveInfo || info instanceof NotYourTurnInfo) {
+            if (info instanceof NotYourTurnInfo) {
                 this.flash(0xff49a17f, 100);
+
             }
             return;
         }
