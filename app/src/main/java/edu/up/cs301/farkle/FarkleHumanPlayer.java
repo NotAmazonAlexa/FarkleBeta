@@ -48,6 +48,8 @@ public class FarkleHumanPlayer extends GameHumanPlayer implements View.OnClickLi
     private int diceStyle = 0;
     // 0 = red; 1 = pink; 2 = sunset; 3 = purple; 4 = nux
 
+    private int lastFarkleId = -1;
+
     // image res id's
     protected int[] diceWhiteResID = {R.drawable.white_one_die,R.drawable.white_two_die,
     R.drawable.white_three_die, R.drawable.white_four_die,
@@ -133,11 +135,13 @@ public class FarkleHumanPlayer extends GameHumanPlayer implements View.OnClickLi
             farkleImage1.invalidate();
             farkleImage2.invalidate();
             updateDisplay();
+            this.lastFarkleId = myState.getCurrentPlayer();
             getTimer().setInterval(1500);
             getTimer().start();
-            if (myState.getCurrentPlayer() == playerNum) {
-                game.sendAction(new FarkleAction(this));
-            }
+
+//            if (myState.getCurrentPlayer() == playerNum) {
+//                game.sendAction(new FarkleAction(this));
+//            }
         }
     }
     
@@ -243,9 +247,10 @@ public class FarkleHumanPlayer extends GameHumanPlayer implements View.OnClickLi
                     diceButtons[i].setImageResource(diceWhiteResID[curDie.getValue()-1]);
                 }
                 else {
-                    diceButtons[i].setImageResource(diceResID[diceStyle][curDie.getValue()-1]);
+                    diceButtons[i].setImageResource(diceResID[diceStyle][curDie.getValue() - 1]);
                 }
             }
+            diceButtons[i].invalidate();
         }
     }
     
@@ -298,6 +303,10 @@ public class FarkleHumanPlayer extends GameHumanPlayer implements View.OnClickLi
         farkleImage2.setVisibility(View.INVISIBLE);
         farkleImage1.invalidate();
         farkleImage2.invalidate();
+        if (this.lastFarkleId == playerNum) {
+            game.sendAction(new FarkleAction(this));
+        }
+        this.lastFarkleId = -1;
         getTimer().stop();
     }
 
