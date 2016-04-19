@@ -247,7 +247,11 @@ public class FarkleHumanPlayer extends GameHumanPlayer implements View.OnClickLi
                     diceButtons[i].setImageResource(diceWhiteResID[curDie.getValue()-1]);
                 }
                 else {
-                    diceButtons[i].setImageResource(diceResID[diceStyle][curDie.getValue() - 1]);
+                    if (myState.getCurrentPlayer() == playerNum) {
+                        diceButtons[i].setImageResource(diceResID[diceStyle][curDie.getValue() - 1]);
+                    } else {
+                        diceButtons[i].setImageResource(diceResID[0][curDie.getValue() - 1]); // change to the generic
+                    }
                 }
             }
             diceButtons[i].invalidate();

@@ -108,26 +108,18 @@ public class FarkleSmartComputerPlayer extends GameComputerPlayer implements Far
                     }
                 }
                 if (dieOutOfPlay == 6) {
-                    //Log.i("", "all dice out of play");
                     myCurActionList.add(new RollAction(this));
                 } else {
                     chooseDice();
                     Log.i("my dice", highestCombo);
                     for (int i = 0; i < 6; i++) {
                         if (highestCombo.charAt(i) == '1') {
-                            //if (state.getDice()[i].isSelected()) {
-                                myCurActionList.add(new SelectDieAction(this, i));
-                            //}
-                        //} else {
-                            //if (!state.getDice()[i].isSelected()) {
-                           //     myCurActionList.add(new SelectDieAction(this, i));
-                           // }
+                            myCurActionList.add(new SelectDieAction(this, i));
                         }
                     }
                     highestCombo = null;
                     highestScore = 0;
                     diceChosen = true;
-                    //myCurActionList.add(new BankPointsAction(this));
                 }
             }
             if(myCurActionList.size() > 0) {
@@ -179,54 +171,12 @@ public class FarkleSmartComputerPlayer extends GameComputerPlayer implements Far
                     }
                 }
             }
-            //if (state.getRunningTotal() > highestScore) {
-            /*
-                int totalScore = 0;
-                int runs = 100;
-                /*
-                for (int j = 0; j < runs; j++) {
-                    int subHighestScore = 0;
-                    String subHighestCombo = "";
-                    FarkleState copyState = new FarkleState(state);
-                    copyState.rollDice();
-                    if (copyState.getRunningTotal() == 0) continue;
-                    for (String currSubSel: diceSelections) {
-                        for (int k = 0; k < 6; k++) {
-                            if (currSubSel.charAt(k) == '0') {
-                                if (copyState.getDice()[k].isSelected()) {
-                                    copyState.selectDie(k);
-                                }
-                            } else {
-                                if (!copyState.getDice()[k].isInPlay()) {
-                                    break;
-                                }
-                                if (!copyState.getDice()[k].isSelected()) {
-                                    copyState.selectDie(k);
-                                }
-                            }
-                        }
-                        if (copyState.getRunningTotal() > subHighestScore) {
-                            subHighestCombo = currSubSel;
-                            subHighestScore = copyState.getRunningTotal();
-                        }
-                        totalScore += subHighestScore;
-                    }
-                }
-                int aveScore = totalScore/runs;
-                if (aveScore > highestScore && !currSel.equals("000000")) {
-                    highestScore = aveScore;
-                    highestCombo = currSel;
-                }
-                diceChosen = true;
-               // Log.i("dice", "chosen");*/
-                if (state.getRunningTotal() > highestScore) {
-                    highestScore = state.getRunningTotal();
-                    highestCombo = currSel;
-                    //diceChosen = true;
-                   // Log.i("dice", "chosen");
-                    //return true;
-                }
-            //}
+
+            if (state.getRunningTotal() > highestScore) {
+                highestScore = state.getRunningTotal();
+                highestCombo = currSel;
+
+            }
         }
         return true;
     }
