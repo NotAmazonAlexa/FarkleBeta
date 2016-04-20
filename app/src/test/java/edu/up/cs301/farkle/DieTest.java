@@ -28,7 +28,7 @@ public class DieTest {
     public void testDie() throws Exception {
         Die die = new Die();
         assertTrue(die.getValue() < 7 && die.getValue() > 0);
-        assertTrue(die.isInPlay());
+        assertTrue(!die.isInPlay());
         assertTrue(!die.isSelected());
 
     }
@@ -42,12 +42,12 @@ public class DieTest {
         // unchanged
         assertTrue(die1val == die2.getValue());
         assertTrue(!die2.isSelected());
-        assertTrue(die2.isInPlay());
+        assertTrue(!die2.isInPlay());
 
         // change die 1
         die1.setIsSelected(true);
         assertTrue(die1.getValue() == die1val);
-        assertTrue(die1.isInPlay());
+        assertTrue(!die1.isInPlay());
         assertTrue(die1.isSelected());
         assertTrue(!die2.isSelected());
 
@@ -56,7 +56,7 @@ public class DieTest {
         assertTrue(die1.getValue() == die2.getValue());
         assertTrue(die2.isSelected());
         assertTrue(die1.isSelected());
-        assertTrue(die2.isInPlay());
+        assertTrue(!die2.isInPlay());
     }
 
     @Test

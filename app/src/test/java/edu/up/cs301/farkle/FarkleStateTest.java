@@ -230,6 +230,7 @@ public class FarkleStateTest extends TestCase {
         farkleState.getDice()[5].setValue(3);
 
         for(Die die : farkleState.getDice()) {
+            die.setIsInPlay(true);
             die.setIsSelected(true);
         }
 
@@ -267,13 +268,11 @@ public class FarkleStateTest extends TestCase {
         farkleState.getDice()[5].setValue(3);
 
         for(Die die : farkleState.getDice()) {
+            die.setIsInPlay(true);
             die.setIsSelected(true);
         }
-
         assertTrue(farkleState.threeOfAKind(true) == 2);
-
         farkleState.getDice()[1].setValue(1);
-
         assertTrue(farkleState.threeOfAKind(true) == -1);
     }
     @Test
@@ -287,6 +286,7 @@ public class FarkleStateTest extends TestCase {
         farkleState.getDice()[5].setValue(3);
 
         for(Die die : farkleState.getDice()) {
+            die.setIsInPlay(true);
             die.setIsSelected(true);
         }
 
@@ -306,6 +306,7 @@ public class FarkleStateTest extends TestCase {
         farkleState.getDice()[5].setValue(3);
 
         for(Die die : farkleState.getDice()) {
+            die.setIsInPlay(true);
             die.setIsSelected(true);
         }
 
@@ -325,6 +326,7 @@ public class FarkleStateTest extends TestCase {
         farkleState.getDice()[5].setValue(3);
 
         for(Die die : farkleState.getDice()) {
+            die.setIsInPlay(true);
             die.setIsSelected(true);
         }
 
@@ -340,6 +342,7 @@ public class FarkleStateTest extends TestCase {
             farkleState.getDice()[i].setValue(i+1);
         }
         for(Die die : farkleState.getDice()) {
+            die.setIsInPlay(true);
             die.setIsSelected(true);
         }
 
@@ -359,6 +362,7 @@ public class FarkleStateTest extends TestCase {
         farkleState.getDice()[5].setValue(5);
 
         for(Die die : farkleState.getDice()) {
+            die.setIsInPlay(true);
             die.setIsSelected(true);
         }
 
@@ -378,6 +382,7 @@ public class FarkleStateTest extends TestCase {
         farkleState.getDice()[5].setValue(4);
 
         for(Die die : farkleState.getDice()) {
+            die.setIsInPlay(true);
             die.setIsSelected(true);
         }
 
@@ -397,6 +402,7 @@ public class FarkleStateTest extends TestCase {
         farkleState.getDice()[5].setValue(2);
 
         for(Die die : farkleState.getDice()) {
+            die.setIsInPlay(true);
             die.setIsSelected(true);
         }
 
@@ -416,6 +422,7 @@ public class FarkleStateTest extends TestCase {
         farkleState.getDice()[5].setValue(3);
 
         for(Die die : farkleState.getDice()) {
+            die.setIsInPlay(true);
             die.setIsSelected(true);
         }
 
