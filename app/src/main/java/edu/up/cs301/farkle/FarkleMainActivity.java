@@ -150,6 +150,18 @@ public class FarkleMainActivity extends GameMainActivity {
         {
             playerTwoImage.setImageResource(R.drawable.avatar_puppy);
         }
+        else if (id == R.id.cat) {
+            playerTwoImage.setImageResource(R.drawable.avatar_cat);
+        }
+        else if (id == R.id.cat2) {
+            playerOneImage.setImageResource(R.drawable.avatar_cat);
+        }
+        else if (id == R.id.girl2) {
+            playerTwoImage.setImageResource(R.drawable.avatar_girl2);
+        }
+        else if (id == R.id.girl3) {
+            playerOneImage.setImageResource(R.drawable.avatar_girl2);
+        }
         else if (id == R.id.pinkDie)
         {
             if(guiPlayer!=null) {
@@ -175,8 +187,12 @@ public class FarkleMainActivity extends GameMainActivity {
             }
         }
         else if (id == R.id.nuxDie) {
+            double x = Math.random();
             if(guiPlayer != null) {
-                guiPlayer.setDiceStyle(4);
+                if(x>0.5)
+                    guiPlayer.setDiceStyle(4);
+                else
+                    guiPlayer.setDiceStyle(5);
             }
         }
         else {

@@ -7,36 +7,48 @@
         <item
 
     android:id="@+id/change_picture"
-    android:title="Change Your Picture"
+    android:title="Change Left Picture"
     android:orderInCategory="200">
             <menu>
                 <item
     android:id="@+id/girl"
     android:orderInCategory="210"
-    android:title="Girl" />
+    android:title="Girl Blonde Hair" />
+                <item
+    android:id="@+id/girl3"
+    android:orderInCategory="220"
+    android:title="Girl Brown Hair" />
                 <item
     android:id="@+id/boyBlackHair"
-    android:orderInCategory="220"
+    android:orderInCategory="230"
     android:title="Boy Black Hair" />
                 <item
     android:id="@+id/boyRedHair"
-    android:orderInCategory="230"
+    android:orderInCategory="240"
     android:title="Boy Red Hair" />
                 <item
     android:id="@+id/dog"
-    android:orderInCategory="240"
+    android:orderInCategory="250"
     android:title="Dog" />
+                <item
+    android:id="@+id/cat2"
+    android:orderInCategory="260"
+    android:title="Creepy Cat" />
             </menu>
         </item>
         <item
     android:id="@+id/change_other_picture"
-    android:title="Change Other Picture"
+    android:title="Change Right Picture"
     android:orderInCategory="300">
             <menu>
                 <item
     android:id="@+id/girl1"
     android:orderInCategory="310"
-    android:title="Girl" />
+    android:title="Girl Blonde Hair" />
+                <item
+    android:id="@+id/girl2"
+    android:orderInCategory="350"
+    android:title="Girl Brown Hair" />
                 <item
     android:id="@+id/boyBlackHair1"
     android:orderInCategory="320"
@@ -45,10 +57,14 @@
     android:id="@+id/boyRedHair1"
     android:orderInCategory="330"
     android:title="Boy Red Hair" />
-                <item
-    android:id="@+id/dog1"
-    android:orderInCategory="340"
-    android:title="Dog" />
+    <item
+        android:id="@+id/dog1"
+        android:orderInCategory="340"
+        android:title="Dog" />
+    <item
+        android:id="@+id/cat"
+        android:orderInCategory="360"
+        android:title="Creepy Cat" />
             </menu>
         </item>
     <item

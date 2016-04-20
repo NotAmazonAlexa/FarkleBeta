@@ -67,7 +67,11 @@ public class FarkleHumanPlayer extends GameHumanPlayer implements View.OnClickLi
             R.drawable.purple_three_die, R.drawable.purple_four_die,
             R.drawable.purple_five_die,R.drawable.purple_six_die},{R.drawable.nux_one_die,R.drawable.nux_two_die,
             R.drawable.nux_three_die, R.drawable.nux_four_die,
-            R.drawable.nux_five_die,R.drawable.nux_six_die}};
+            R.drawable.nux_five_die,R.drawable.nux_six_die},{R.drawable.veg_one_die,R.drawable.veg_two_die,
+            R.drawable.veg_three_die, R.drawable.veg_four_die,
+            R.drawable.veg_five_die,R.drawable.veg_six_die},{R.drawable.black_one_die,R.drawable.black_two_die,
+            R.drawable.black_three_die, R.drawable.black_four_die,
+            R.drawable.black_five_die,R.drawable.black_six_die}};
 
     // game play variables
     private GameMainActivity myActivity;
@@ -250,7 +254,7 @@ public class FarkleHumanPlayer extends GameHumanPlayer implements View.OnClickLi
                     if (myState.getCurrentPlayer() == playerNum) {
                         diceButtons[i].setImageResource(diceResID[diceStyle][curDie.getValue() - 1]);
                     } else {
-                        diceButtons[i].setImageResource(diceResID[0][curDie.getValue() - 1]); // change to the generic
+                        diceButtons[i].setImageResource(diceResID[diceResID.length-1][curDie.getValue() - 1]); // change to the generic
                     }
                 }
             }
@@ -314,8 +318,12 @@ public class FarkleHumanPlayer extends GameHumanPlayer implements View.OnClickLi
         getTimer().stop();
     }
 
+    /**
+     * setDiceStyle - sets the dice style according to user selection from menu
+     * @param diceStyle which style to change to
+     */
     public void setDiceStyle(int diceStyle) {
-        if(diceStyle >=0 && diceStyle <5) {
+        if(diceStyle >=0 && diceStyle <6) {
             this.diceStyle = diceStyle;
             displayDie();
         }
